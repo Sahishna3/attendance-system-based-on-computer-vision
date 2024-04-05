@@ -121,4 +121,5 @@ print(student_name)
 f.writelines(f'(student_name}, {reg_no}, {time}, {date}\n')
 
 #print(name_list)
-  
+
+
