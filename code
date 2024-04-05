@@ -1,0 +1,124 @@
+//importing of libraries
+import cv2
+
+import face_recognition
+
+import os
+
+import numpy as np
+
+from datetime import datetime
+
+import pickle
+
+import csv
+//recognition of faces of the persons 
+path Student Images
+
+images (1
+
+classNames os. Listdir(path)
+
+Student names = 11
+
+for i in classNames:
+
+curing cv2.imread("(path)/(1)')
+
+images.append(curing)
+
+Student names.append(os.path.splitext(i)[0])
+
+def findEncodings(images):
+
+encodeList = [] for ing in images:
+
+ing= cv2.cvtColor(img, cv2.COLOR BGR2RGB)
+
+encoded face face recognition. face_encodings(img) [0]
+
+encodeList.append(encoded_face)
+
+return encodeList encoded_face_train findEncodings(images)
+//creating a list to store and view images and listing all the files in the directory as a array
+images = []
+classNames = os.listdir(path)
+//creation of csv files and webcame taking pictures
+cap cv2.VideoCapture(0)
+
+while Truet
+
+success, ing cap.read()
+
+ings cv2.resize(img, (0,0), None, 0.25,0.25)
+
+img5 cv2.cvtColor(img5, cv2.COLOR BGR2RGB)
+
+faces in frame face_recognition,face_locations(ings)
+
+encoded faces face_recognition.face encodings(imgs, faces_in_frame)
+
+for encode face, faceloc in zip(encoded_faces, faces_in_frame):
+
+matches face_recognition.compare_faces (encoded_face_train, encode_face) faceDist face_recognition.face_distance(encoded_face_train, encode_face)
+
+matchIndex np.argmin (faceDist)
+
+print(matchIndex) if matches [matchIndex]:
+
+name classNames [matchIndex].upper().lower()
+
+y1,x2,y2, x1 facelod
+
+#since we scaled down by 4 times
+
+y1, x2,y2,x1 y1*4,x2+4,y24,x1*4
+
+cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0),2)
+
+cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
+
+cv2.putText(ing, name, (x1+6,y2-5), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255),2)
+
+markAttendance(name)
+
+if cv2.waitKey(1) & 0xFF ord('q'):
+
+break
+//Taking of pictures by webcam is done by this function VideoCapture()
+cap = cv2.VideoCapture(0)
+//matching of the images to the database and marking as present or absent 
+def mark attendance(student_name):
+
+with open('Attendance.csv', 'r') as f:
+
+my_data_list = f.readlines()
+
+name list = []
+
+student_name student_name.split('.')[0]
+
+reg_no= (student_name.split(',')[1]) student_name = student_name.split(',')[0]
+
+for line in my_data_list:
+
+entry line.split(',')
+
+name_list.append(entry[0])
+
+if student_name not in name_list:
+
+global temp
+
+temp += 1
+
+now datetime.now()
+
+time now.strftime('%I:MM:SS:hp') date = now.strftime('d-8-AY')
+
+print(student_name)
+
+f.writelines(f'(student_name}, {reg_no}, {time}, {date}\n')
+
+#print(name_list)
+  
